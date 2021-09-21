@@ -4,19 +4,6 @@ const database = require('./database');
 // Create router object
 router = express.Router();
 
-// // GET (old)
-
-// router.get("/user/all", (request, response) => {
-//     let users = data.get_all_users(); // get all the users
-//     response.send(users);
-// });
-
-// router.get("/user/by-uid", (request, response) => {
-//     let user_id = request.query.user_id;
-//     let user = data.get_user_by_user_id(user_id); // get a user based on user_id
-//     response.send(user);
-// });
-
 
 // GET - query from MySQL database
 router.get("/user/all", (request, response) => {
@@ -51,16 +38,6 @@ router.get("/user/all", (request, response) => {
     );
   });
 
-
-// // POST (old)
-
-// router.post("/user/add", (request, response) => {
-//     let user = request.body; // Step 1: get user object from request
-//     data.add_user(user); // Step 2: add user 
-//     response.send("User added succcesfully!"); 
-// });
-
-// POST - query from MySQL database
 
 router.post("/user/add", (request, response) => {
     let user = request.body; // Step 1: get user object from request
