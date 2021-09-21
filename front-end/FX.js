@@ -25,7 +25,13 @@ Source : Polygon.io
   //Insert FX ticker by in the form of getElementby ID
 
    document.getElementById('symbol').innerHTML = data.ticker;
-  
+
+
+   //Declare Base and Quote Currency
+   let Quote = (data.ticker[5]+data.ticker[6]+data.ticker[7]);
+   let Base = data.ticker[2]+data.ticker[3]+data.ticker[4];
+   console.log(Base,Quote);
+   
  //Create a table to store and display the given stock prices
   
    let pricedata = data.results;
@@ -45,6 +51,7 @@ Source : Polygon.io
             <tr>
               <th>Date</th>
               <th>ExchangeRate</th>
+              <th>Quote Amount</th>
               <th>Conversion Amount</th>
             </tr>
         </thead>
@@ -52,10 +59,10 @@ Source : Polygon.io
     <tbody>`;
     pricedata.forEach((price) => {
 
-      text = text + `<tr><td>${new Date(price.t).toLocaleString("en-SG", options)}</td><td>${price.c.toFixed(5)} </td><td>${(value/price.c).toFixed(2)} </td></tr>`
+      text = text + `<tr><td>${new Date(price.t).toLocaleString("en-SG", options)}</td><td>${price.c.toFixed(5)} </td><td>${Quote  +" "+ (value)}</td><td>${Base +" "+ (value/price.c).toFixed(2)} </td></tr>`
      
 
-      
+       
     });
     text += `</tbody></table><br>`
     
@@ -64,7 +71,8 @@ Source : Polygon.io
     let Conversion_value = value/pricedata[0].c;
     console.log(Conversion_value);
 
- 
+    
+
     $(".mypanel").html(text);
   
     });
