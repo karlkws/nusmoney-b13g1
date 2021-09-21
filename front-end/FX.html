@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>      <!-- jquery source -->
+    <link rel="stylesheet" href="FX.css" />
+    
+    <title>Currency</title>
+    <h1>Currency Conversion (Quote to Base Currency)</h1>
+</head>
+<body>
+<div>
+    <h1 id="symbol"></h1>
+    <form id="myform">
+        
+        <label for="ticker">FX Check(Base/Quote):</label><br>
+        <input type="text" id="ticker" name="ticker" placeholder="eg.EUR/SGD"><br><br>
+
+        <label for="Date">Transaction Date:</label><br>
+        <input type="text" id="transaction" name="Transaction Date" placeholder="YYYY-MM-DD"><br><br>
+
+        <label for="Value">Amount for Conversion(Quote)</label><br>
+        <input type="int" id="Value" name="Amount" placeholder="Full amount">
+
+      </form>
+      <br><button class="btn btn-outline-primary" onclick="getInputValue();">Submit</button>
+      <button class = "btn btn-dark" onclick="refresh()">Refresh</button>
+       
+</div>
+</div>
+
+<div class="mypanel">
+    
+    
+    <script src="FX.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>
