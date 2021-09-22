@@ -4,6 +4,23 @@ const database = require('./database');
 // If package, just use package name directly.
 // ./ = current folder, .. = folder above
 
+// 1. Logging in
+
+
+
+// 2. GET user/by-email
+//      - Select < first_name, last_name, email, last_tran_date, balance..  >
+
+// WHhere email = '${request.query.email
+//      
+// 3. POST user/add-user
+
+// 4. GET transaction/by-user_id
+
+// 5. POST transaction/add-transaction
+
+
+
 const user = require('./user'); 
 const transaction = require('./transaction'); 
 

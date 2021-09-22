@@ -20,13 +20,17 @@ router.get("/user/all", (request, response) => {
     });
   });
   
-  router.get("/user/by-uid", (request, response) => {
+
+
+//2. Find user by email
+  router.get("/user/by-email", (request, response) => {
     // let user_id = request.query.user_id;
     // let user = data.get_user_by_user_id(user_id); // get a user based on user_id I get in the request.
     // response.send(user);
   
     database.connection.query(
-      `select * from user where user_id = '${request.query.user_id}'`,
+      `select * from user 
+      where email = '${request.query.email}'`,
       (errors, records) => {
         if (errors) {
           console.log(errors);
@@ -38,14 +42,21 @@ router.get("/user/all", (request, response) => {
     );
   });
 
-
-router.post("/user/add", (request, response) => {
+  
+//3. Add new user
+router.post("/user/add-user", (request, response) => {
     let user = request.body; // Step 1: get user object from request
     // Step 2: add user 
     database.connection.query(
         `INSERT INTO 
-        user(first_name, last_name, email, phone, plan_id, signup_date)
-        values('${user.first_name}', '${user.last_name}', '${user.email}', '${user.phone}', '${user.plan_id}', NOW())`,
+        user(first_name, last_name, email, mobile, password, date_created)
+        values('${user.first_name}', '${user.last_name}', '${user.email}', '${user.mobile}', '${user.password}', NOW() );`,
+        
+        /*
+INSERT INTO 
+user (first_name, last_name, email, mobile, password, date_created)
+values ('Henrik','Ahnberg','godgamer@gmail.com','696969','smallpeepee',NOW());
+        */
         (errors, records) => {
             if (errors) {
                 console.log(errors);
