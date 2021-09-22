@@ -14,7 +14,7 @@ const properties = {
 
 
 // Create a connection object which will hold the connection to cloud mysql server.
-let connection = mysql.createConnection(properties);
+let connection = mysql.createConnection(properties, {multipleStatements: true});
 
 // Attempt to connect with the mysql server.
 // If connection fails, print the error message. Otherwise, print the success message.

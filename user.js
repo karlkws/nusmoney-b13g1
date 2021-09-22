@@ -29,7 +29,7 @@ router.get("/user/all", (request, response) => {
     // response.send(user);
   
     database.connection.query(
-      `select * from user 
+      `select last_tran_date, balance_sgd, balance_usd, balance_eur, balance_gbp from user 
       where email = '${request.query.email}'`,
       (errors, records) => {
         if (errors) {
