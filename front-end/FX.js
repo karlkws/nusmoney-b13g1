@@ -58,20 +58,22 @@ Source : Polygon.io
    var text =`<br><table>
           <thead>
             <tr>
-              <th>Date</th>
-              <th>ExchangeRate</th>
-              <th>Quote Amount</th>
-              <th>Conversion Amount</th>
+              <th>Date </th>
+              <th>Exchange Rate<br>(${Quote}:${Base})</th>
+              <th>From </th>
+              <th>To </th>
             </tr>
         </thead>
 
     <tbody>`;
     pricedata.forEach((price) => {
-
-      text = text + `<tr><td>${new Date(price.t).toLocaleString("en-SG", options)}</td><td>${price.c.toFixed(5)} </td><td>${Quote  +" "+ (value)}</td><td>${Base +" "+ (value/price.c).toFixed(2)} </td></tr>`
-     
-
-       
+      text = text + 
+      `<tr> 
+        <td>${new Date(price.t).toLocaleString("en-SG", options)}</td> 
+        <td>1 : ${price.c.toFixed(5)} </td> 
+        <td>${Quote  +" "+ (value)}</td> 
+        <td>${Base +" "+ (value/price.c).toFixed(2)} </td> 
+      </tr>`
     });
     text += `</tbody></table><br>`
     
@@ -137,8 +139,8 @@ var gbp = 0;
 function confirm() {
   addtran(postDataJSON);
   updatebalance(postDataJSON)
-  console.log("confirm function ran");
-  alert("Balance Updated")
+  console.log("confirm() ran successfully");
+  alert("Balance Updated");
 }
 
 //ajax 1 add tran
@@ -151,13 +153,13 @@ function addtran(postdata){// pass your data in method
              data: postDataJSON,// now data come in this function
              contentType: "application/json; charset=UTF-8", // standard
              crossDomain: true, // for security purpose
-             dataType: "json", // JSON object string is text
+             dataType: "json", 
 
              success: function (data, status, jqXHR) {
 
                //  alert("success");// write success in " "
                  alert(status);
-                 document.getElementById("output").innerText = data;
+                 
              },
 
              error: function (jqXHR, status) {
@@ -179,13 +181,13 @@ function updatebalance(postdata){// pass your data in method
           data: postDataJSON,// now data come in this function
           contentType: "application/json; charset=UTF-8", // standard
           crossDomain: true, // for security purpose
-          dataType: "json", // JSON object string is text
+          dataType: "json", 
 
           success: function (data, status, jqXHR) {
 
             //  alert("success");// write success in " "
               alert(status);
-              document.getElementById("output").innerText = data;
+              
           },
 
           error: function (jqXHR, status) {
