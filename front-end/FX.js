@@ -4,6 +4,9 @@ https://github.com/karlkws/nusmoney-b13g1
 Source : Polygon.io
 
 */
+const b1 = document.getElementById('b1');
+// const b1 = document.getElementsByClassName("b1");
+
 
  function getInputValue(){
   // Selecting the input element and get its value 
@@ -71,15 +74,125 @@ Source : Polygon.io
     let Conversion_value = value/pricedata[0].c;
     console.log(Conversion_value);
 
-    
+    // JS Object:
+    // 1) Tran date 2) Value (Base currency) 3) Conversion_value
 
-    $(".mypanel").html(text);
+// Set up JS Object
+ // Check Base and Quote currency string and add negative for base currency   
+var sgd = null;
+var usd = null;
+var eur = null;
+var gbp = null;
+ 
+ if (Quote === 'SGD') {
+    sgd = value * -1
+    } else if (Quote === 'USD'){
+      usd = value * -1
+    } else if  (Quote === 'EUR') {
+      eur = value * -1
+    } else if  (Quote === 'GBP') {
+      gbp = value * -1
+    }; 
+
+    if (Base === 'SGD') {
+      sgd = Conversion_value 
+      } else if (Base === 'USD'){
+        usd = Conversion_value 
+      } else if  (Base === 'EUR') {
+        eur = Conversion_value 
+      } else if  (Base === 'GBP') {
+        gbp = Conversion_value 
+      }; 
+
+  var postData ={ 
+      user_id: 1, //to modify to be dynamic var
+      tran_type: 'Conversion',  
+      tran_date: datefrom,
+      amt_sgd: sgd,
+      amt_usd: usd,
+      amt_eur: eur,
+      amt_gbp: gbp
+  };
+
+  postDataJSON = JSON.stringify(postData); // convert JS object to JSON object
+  console.log(postDataJSON); // JSON Object to be used for back-end
+  
+
+    $("#mypanel").html(text);
   
     });
-
  }
 
  
  function refresh () {
   location.reload();
  }
+
+function confirm(e) {
+  e.preventDefault();
+  addtran(postDataJSON);
+  updatebalance(postDataJSON)
+  console.log("confirm function ran");
+}
+
+//ajax 1 add tran
+function addtran(postdata){// pass your data in method
+     console.log(postdata);
+     // $.ajax({})
+     $.ajax({
+             type: "POST",
+             url: "http://localhost:3000/transaction/add-transaction",
+             data: postDataJSON,// now data come in this function
+             contentType: "application/x-www-form-urlencoded; charset=UTF-8", // standard
+             crossDomain: true, // for security purpose
+             dataType: "text", // JSON object string is text
+
+             success: function (data, status, jqXHR) {
+
+               //  alert("success");// write success in " "
+                 alert(status);
+                 document.getElementById("output").innerText = data;
+             },
+
+             error: function (jqXHR, status) {
+                 // error handler
+                 //console.log(jqXHR);
+                 alert('fail ' + status.code);   
+             }
+          });
+
+    }
+
+//ajax 2 update user balance
+function updatebalance(postdata){// pass your data in method
+  console.log(postdata);
+  // $.ajax({})
+  $.ajax({
+          type: "PUT",
+          url: "http://localhost:3000/user/update",
+          data: postDataJSON,// now data come in this function
+          contentType: "application/x-www-form-urlencoded; charset=UTF-8", // standard
+          crossDomain: true, // for security purpose
+          dataType: "text", // JSON object string is text
+
+          success: function (data, status, jqXHR) {
+
+            //  alert("success");// write success in " "
+              alert(status);
+              document.getElementById("output").innerText = data;
+          },
+
+          error: function (jqXHR, status) {
+              // error handler
+              //console.log(jqXHR);
+              alert('fail ' + status.code);   
+          }
+       });
+      }
+ 
+ 
+b1.addEventListener("submit", confirm);
+
+     
+
+  
