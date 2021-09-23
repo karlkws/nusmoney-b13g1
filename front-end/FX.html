@@ -9,27 +9,32 @@
     <link rel="stylesheet" href="FX.css" />
     
     <title>Currency</title>
-    <h1>Currency Conversion (Quote to Base Currency)</h1>
+    <h1>NUS Money - Currency </h1>
 </head>
 <body>
 <div>
-    <h1 id="symbol"></h1>
+    
     <form id="myform">
         
-        <label for="ticker">FX Check(Base/Quote):</label><br>
-        <input type="text" id="ticker" name="ticker" placeholder="eg.EUR/SGD"><br><br>
+        <label for="ticker"><strong>From (Currency)</strong> :</label>
+        <input type="text" id="quote" name="ticker" placeholder="SGD/EUR/USD/GBP">
+        
+        <label for="ticker"><strong> =========>      To (Currency)</strong></label>
+        <input type="text" id="base" name="ticker" placeholder="eg.SGD/EUR/USD/GBP"><br><br>
 
-        <label for="Date">Transaction Date:</label><br>
+        <label for="Value"><strong>Amoun</strong>t </label><br>
+        <input type="int" id="Value" name="Amount" placeholder="Amount"><br><br>
+
+        <label for="Date"><strong>Transaction Date:</strong></label><br>
         <input type="text" id="transaction" name="Transaction Date" placeholder="YYYY-MM-DD"><br><br>
 
-        <label for="Value">Amount for Conversion(Quote)</label><br>
-        <input type="int" id="Value" name="Amount" placeholder="Full amount">
+     
 
       </form>
       <br><button class="btn btn-outline-primary" onclick="getInputValue();">Confirm</button>
       <button class = "btn btn-dark" onclick="refresh()">Refresh</button>
       
-       
+      <h1 id="symbol"></h1>
 </div>
 </div>
 
@@ -44,7 +49,7 @@
     
 </div>
 
- <button class = "btn btn-dark" id='b1' onclick="confirm()">confirm</button>
+ <button class = "btn btn-dark" id='b1' onclick="confirm()">Submit</button>
 
 
 </body>

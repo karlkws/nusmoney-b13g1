@@ -10,10 +10,14 @@ Source : Polygon.io
 
  function getInputValue(){
   // Selecting the input element and get its value 
-  const stock =   document.getElementById('ticker').value;
+  const quote =   document.getElementById('quote').value.toUpperCase();
+  const base =   document.getElementById('base').value.toUpperCase();
   const datefrom = document.getElementById('transaction').value;
   const dateto =  document.getElementById('transaction').value;
   const value =  document.getElementById('Value').value;
+  
+  let stock = (base+quote);
+  console.log(stock);
 
   Price ='https://api.polygon.io/v2/aggs/ticker/'+'C:'+[stock]+'/range/1/day/'+[datefrom]+'/'+[dateto]+'?adjusted=true&sort=asc&limit=50000&apiKey=f6NqhgBtOpJ9ceSA2w_C2j4Tj43VREQc' //Aggregates (Bars) API
   
@@ -31,9 +35,11 @@ Source : Polygon.io
 
 
    //Declare Base and Quote Currency
-   let Quote = (data.ticker[5]+data.ticker[6]+data.ticker[7]);
-   let Base = data.ticker[2]+data.ticker[3]+data.ticker[4];
-   console.log(Base,Quote);
+   //let Quote = (data.ticker[5]+data.ticker[6]+data.ticker[7]);
+   //let Base = data.ticker[2]+data.ticker[3]+data.ticker[4];
+   let Quote = quote;
+   let Base = base;
+   
    
  //Create a table to store and display the given stock prices
   
@@ -132,6 +138,7 @@ function confirm() {
   addtran(postDataJSON);
   updatebalance(postDataJSON)
   console.log("confirm function ran");
+  alert("Balance Updated")
 }
 
 //ajax 1 add tran
