@@ -4,7 +4,7 @@ https://github.com/karlkws/nusmoney-b13g1
 Source : Polygon.io
 
 */
-const b1 = document.getElementById('b1');
+
 // const b1 = document.getElementsByClassName("b1");
 
 
@@ -79,10 +79,10 @@ const b1 = document.getElementById('b1');
 
 // Set up JS Object
  // Check Base and Quote currency string and add negative for base currency   
-var sgd = null;
-var usd = null;
-var eur = null;
-var gbp = null;
+var sgd = 0;
+var usd = 0;
+var eur = 0;
+var gbp = 0;
  
  if (Quote === 'SGD') {
     sgd = value * -1
@@ -105,7 +105,7 @@ var gbp = null;
       }; 
 
   var postData ={ 
-      user_id: 1, //to modify to be dynamic var
+      user_id: 2, //to modify to be dynamic var
       tran_type: 'Conversion',  
       tran_date: datefrom,
       amt_sgd: sgd,
@@ -128,8 +128,7 @@ var gbp = null;
   location.reload();
  }
 
-function confirm(e) {
-  e.preventDefault();
+function confirm() {
   addtran(postDataJSON);
   updatebalance(postDataJSON)
   console.log("confirm function ran");
@@ -143,9 +142,9 @@ function addtran(postdata){// pass your data in method
              type: "POST",
              url: "http://localhost:3000/transaction/add-transaction",
              data: postDataJSON,// now data come in this function
-             contentType: "application/x-www-form-urlencoded; charset=UTF-8", // standard
+             contentType: "application/json; charset=UTF-8", // standard
              crossDomain: true, // for security purpose
-             dataType: "text", // JSON object string is text
+             dataType: "json", // JSON object string is text
 
              success: function (data, status, jqXHR) {
 
@@ -156,8 +155,8 @@ function addtran(postdata){// pass your data in method
 
              error: function (jqXHR, status) {
                  // error handler
-                 //console.log(jqXHR);
-                 alert('fail ' + status.code);   
+                 //console.log(JSON.stringify(error));
+                 //alert('fail ' + status.code);   
              }
           });
 
@@ -171,9 +170,9 @@ function updatebalance(postdata){// pass your data in method
           type: "PUT",
           url: "http://localhost:3000/user/update",
           data: postDataJSON,// now data come in this function
-          contentType: "application/x-www-form-urlencoded; charset=UTF-8", // standard
+          contentType: "application/json; charset=UTF-8", // standard
           crossDomain: true, // for security purpose
-          dataType: "text", // JSON object string is text
+          dataType: "json", // JSON object string is text
 
           success: function (data, status, jqXHR) {
 
@@ -185,13 +184,13 @@ function updatebalance(postdata){// pass your data in method
           error: function (jqXHR, status) {
               // error handler
               //console.log(jqXHR);
-              alert('fail ' + status.code);   
+              //alert('fail ' + status.code);   
           }
        });
       }
  
  
-b1.addEventListener("submit", confirm);
+
 
      
 

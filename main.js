@@ -1,6 +1,11 @@
 const express = require("express");
 const database = require('./database'); 
-const cors = require("cors");
+const cors = require('cors');
+
+
+
+
+
 
 // To import file in same folder, use ./ notation. 
 // If package, just use package name directly.
@@ -28,11 +33,11 @@ const transaction = require('./transaction');
 
 //Create server application
 server = express();
+server.use(cors());
 server.use(express.json()); // Tell server to use posted data in JSON format
 
 server.use(user.router);
 server.use(transaction.router);
-server.use(cors());
 
 // Tell server to use created router mapping
 server.use(router);
