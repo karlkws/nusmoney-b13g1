@@ -10,10 +10,14 @@ Source : Polygon.io
 
  function getInputValue(){
   // Selecting the input element and get its value 
-  const stock =   document.getElementById('ticker').value;
+  const quote =   document.getElementById('quote').value.toUpperCase();
+  const base =   document.getElementById('base').value.toUpperCase();
   const datefrom = document.getElementById('transaction').value;
   const dateto =  document.getElementById('transaction').value;
   const value =  document.getElementById('Value').value;
+  
+  let stock = (base+quote);
+  console.log(stock);
 
   Price ='https://api.polygon.io/v2/aggs/ticker/'+'C:'+[stock]+'/range/1/day/'+[datefrom]+'/'+[dateto]+'?adjusted=true&sort=asc&limit=50000&apiKey=f6NqhgBtOpJ9ceSA2w_C2j4Tj43VREQc' //Aggregates (Bars) API
   
@@ -31,9 +35,11 @@ Source : Polygon.io
 
 
    //Declare Base and Quote Currency
-   let Quote = (data.ticker[5]+data.ticker[6]+data.ticker[7]);
-   let Base = data.ticker[2]+data.ticker[3]+data.ticker[4];
-   console.log(Base,Quote);
+   //let Quote = (data.ticker[5]+data.ticker[6]+data.ticker[7]);
+   //let Base = data.ticker[2]+data.ticker[3]+data.ticker[4];
+   let Quote = quote;
+   let Base = base;
+   
    
  //Create a table to store and display the given stock prices
   
@@ -52,20 +58,22 @@ Source : Polygon.io
    var text =`<br><table>
           <thead>
             <tr>
-              <th>Date</th>
-              <th>ExchangeRate</th>
-              <th>Quote Amount</th>
-              <th>Conversion Amount</th>
+              <th>Date </th>
+              <th>Exchange Rate<br>(${Quote}:${Base})</th>
+              <th>From </th>
+              <th>To </th>
             </tr>
         </thead>
 
     <tbody>`;
     pricedata.forEach((price) => {
-
-      text = text + `<tr><td>${new Date(price.t).toLocaleString("en-SG", options)}</td><td>${price.c.toFixed(5)} </td><td>${Quote  +" "+ (value)}</td><td>${Base +" "+ (value/price.c).toFixed(2)} </td></tr>`
-     
-
-       
+      text = text + 
+      `<tr> 
+        <td>${new Date(price.t).toLocaleString("en-SG", options)}</td> 
+        <td>1 : ${price.c.toFixed(5)} </td> 
+        <td>${Quote  +" "+ (value)}</td> 
+        <td>${Base +" "+ (value/price.c).toFixed(2)} </td> 
+      </tr>`
     });
     text += `</tbody></table><br>`
     
@@ -131,7 +139,8 @@ var gbp = 0;
 function confirm() {
   addtran(postDataJSON);
   updatebalance(postDataJSON)
-  console.log("confirm function ran");
+  console.log("confirm() ran successfully");
+  alert("Balance Updated");
 }
 
 //ajax 1 add tran
@@ -144,13 +153,13 @@ function addtran(postdata){// pass your data in method
              data: postDataJSON,// now data come in this function
              contentType: "application/json; charset=UTF-8", // standard
              crossDomain: true, // for security purpose
-             dataType: "json", // JSON object string is text
+             dataType: "json", 
 
              success: function (data, status, jqXHR) {
 
                //  alert("success");// write success in " "
                  alert(status);
-                 document.getElementById("output").innerText = data;
+                 
              },
 
              error: function (jqXHR, status) {
@@ -172,13 +181,13 @@ function updatebalance(postdata){// pass your data in method
           data: postDataJSON,// now data come in this function
           contentType: "application/json; charset=UTF-8", // standard
           crossDomain: true, // for security purpose
-          dataType: "json", // JSON object string is text
+          dataType: "json", 
 
           success: function (data, status, jqXHR) {
 
             //  alert("success");// write success in " "
               alert(status);
-              document.getElementById("output").innerText = data;
+              
           },
 
           error: function (jqXHR, status) {
