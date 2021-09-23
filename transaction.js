@@ -7,16 +7,7 @@ app.use(cors());
 // Create router object
 router = express.Router();
 
-// GET
-
-router.get("/account/all", (request, response) => {
-    let accounts = data.get_all_accounts(); // get all the accounts
-    response.send(accounts);
-});
-
-
-
-
+// 3. GET TRANSACTION HISTORY API
 
 router.get("/transaction/by-email", (request, response) => {
       
@@ -101,16 +92,6 @@ router.get("/transaction/by-email", (request, response) => {
     )
 });
 
-
-
-
-// POST
-
-router.post("/account/add", (request, response) => {
-    let account = request.body; // Step 1: get account object from request
-    data.add_account(account); // Step 2: add account 
-    response.send("Account added succcesfully!"); 
-});
 
 
 module.exports = {
