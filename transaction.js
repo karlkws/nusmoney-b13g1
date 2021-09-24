@@ -2,13 +2,12 @@ const express = require("express");
 const database = require('./database'); 
 const cors = require('cors');
 const app = express();
-
 app.use(cors());
 // Create router object
 router = express.Router();
 
-// 3. GET TRANSACTION HISTORY API
 
+// 3. GET TRANSACTION HISTORY API
 router.get("/transaction/by-email", (request, response) => {
       
     database.connection.query(
@@ -36,10 +35,8 @@ router.get("/transaction/by-email", (request, response) => {
 
 // 4. ADD TRANSACTION API
 // TO UPDATE FRONT-END TO CHECK FOR INPUT CURRENCY (POSITIVE OR NEGATIVE) AND SET TRAN_TYPE 
-
   router.post("/transaction/add-transaction", (request, response) => {
-    let user = request.body; // Step 1: get user object from request
-    // Step 2: add user 
+    let user = request.body; 
     database.connection.query(
         `
         INSERT INTO
@@ -66,7 +63,7 @@ router.get("/transaction/by-email", (request, response) => {
         }
     )
 });
-
+// UPDATE NEW TRANSACTION TO USER BALANCE IN DATABASE
     router.put("/user/update", (request, response) => {
         let user = request.body;
         database.connection.query(
