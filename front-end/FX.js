@@ -193,8 +193,8 @@ function updatebalance(postdata){// pass your data in method
 
           error: function (jqXHR, status) {
               // error handler
-              //console.log(jqXHR);
-              //alert('fail ' + status.code);   
+              console.log(jqXHR);
+              alert('fail ' + status.code);   
           }
        });
       }
