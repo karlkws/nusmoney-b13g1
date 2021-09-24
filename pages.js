@@ -34,11 +34,11 @@ router.post('/auth', function(request, response) {
 				request.session.email = email;
 				
                 // console.log('Log in succeess!');
-                
-                response.redirect('/front-end/FX.html');
+                // response.redirect('/front-end/FX.html');
+                response.redirect('/front-end/hometesting.html');
 			} else {
 				console.log('Incorrect Email and/or Password!');
-                // response.redirect('/front-end/relogin.html');
+                
                 response.redirect('/front-end/relogin.html');;
 			}			
 			response.end();
@@ -49,6 +49,17 @@ router.post('/auth', function(request, response) {
         response.end();
     }
     
+});
+
+//
+router.get('/admin', (request, response) => {
+    if (request.session.email) {
+        var output = {"e_mail": request.session.email};
+        response.send(output);
+        return output;
+    } else {
+        response.send("Error");
+    }
 });
 
 

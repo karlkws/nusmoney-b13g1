@@ -9,7 +9,7 @@ console.log(uid)
 function getFromServer(){
   //e.preventDefault();       //?
   var querryStr =  "http://localhost:3000/user/by-email?email=" + uid;
-  console.log (querryStr);
+  console.log(querryStr);
   $.getJSON(querryStr, mydata );
   }
 
@@ -25,5 +25,9 @@ function getFromServer(){
       $(".balance").html(text);   
   }
 
-getFromServer()
+getFromServer();
 //b3.addEventListener('click',getFromServer);
+
+
+
+
