@@ -5,9 +5,6 @@ Source : Polygon.io
 
 */
 
-// const b1 = document.getElementsByClassName("b1");
-
-
  function getInputValue(){
   // Selecting the input element and get its value 
   const quote =   document.getElementById('quote').value.toUpperCase();
@@ -132,7 +129,7 @@ var gbp = 0;
  }
 
  
- function refresh () {
+function refresh () {
   location.reload();
  }
 
