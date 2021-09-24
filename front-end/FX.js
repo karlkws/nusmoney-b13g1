@@ -139,6 +139,7 @@ function confirm() {
   updatebalance(postDataJSON)
   console.log("confirm function ran");
   alert("Balance Updated")
+  window.location.reload();
 }
 
 //ajax 1 add tran
