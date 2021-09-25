@@ -32,10 +32,12 @@ router.post('/auth', function(request, response) {
 			if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.email = email;
-				
-                // console.log('Log in succeess!');
-                // response.redirect('/front-end/FX.html');
-                response.redirect('/front-end/hometesting.html');
+                // console.log(results);
+                // console.log(results[0].user_id);
+                request.session.u_id = results[0].user_id;
+                console.log('User log in success!');
+                // response.redirect('/front-end/FX.html'); // actual page to redirect to, TO BE EDITED AND FINALIZED
+                response.redirect('/front-end/hometesting.html'); // for testing purpose
 			} else {
 				console.log('Incorrect Email and/or Password!');
                 
@@ -51,14 +53,15 @@ router.post('/auth', function(request, response) {
     
 });
 
-//
+// 3. Retrieve stored email of logged-in user within the session
 router.get('/admin', (request, response) => {
     if (request.session.email) {
-        var output = {"e_mail": request.session.email};
+        var output = {"e_mail": request.session.email, "user_id": request.session.u_id};
         response.send(output);
+        // console.log("u_id is " + output.user_id);
         return output;
     } else {
-        response.send("Error");
+        response.send("Error retrieving user session's email.");
     }
 });
 
