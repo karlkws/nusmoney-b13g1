@@ -118,3 +118,6 @@ insert into user (user_id, first_name, last_name, email, mobile, password, date_
 insert into user (user_id, first_name, last_name, email, mobile, password, date_created, last_tran_date, balance_sgd, balance_usd, balance_eur, balance_gbp) values (98, 'Paulette', 'Killeen', 'pkilleen2p@ibm.com', '956-581-6431', 'x3uKljX0d', '2020-06-13 09:13:19', '2021-04-09 06:48:21', 86920.8, 66252.61, 81171.71, 47755.17);
 insert into user (user_id, first_name, last_name, email, mobile, password, date_created, last_tran_date, balance_sgd, balance_usd, balance_eur, balance_gbp) values (99, 'Vivianne', 'Kubala', 'vkubala2q@com.com', '620-893-0144', '662zFMQIkZ2c', '2020-01-10 13:30:44', '2021-01-10 08:29:29', 39931.38, 6067.06, 10757.73, 31129.8);
 insert into user (user_id, first_name, last_name, email, mobile, password, date_created, last_tran_date, balance_sgd, balance_usd, balance_eur, balance_gbp) values (100, 'Carly', 'Rothermel', 'crothermel2r@google.de', '227-853-7473', 'XQ2oaz', '2020-08-18 02:27:00', '2021-05-12 18:45:47', 29426.06, 18903.34, 68648.12, 61104.87);
+
+UPDATE user
+SET password = "123";
