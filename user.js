@@ -9,10 +9,13 @@ app.use(cors());
 router = express.Router();  
 
 
+
+
+
 // Find user by email
-  router.get("/user/by-email", (request, response) => {
+router.get("/user/by-email", (request, response) => {
     database.connection.query(
-      `select last_tran_date, balance_sgd, balance_usd, balance_eur, balance_gbp from user 
+      `select user_id, first_name, last_name, last_tran_date, balance_sgd, balance_usd, balance_eur, balance_gbp from user 
       where email = '${request.query.email}'`,
       (errors, records) => {
         if (errors) {
@@ -23,7 +26,7 @@ router = express.Router();
         }
       }
     );
-  });
+});
 
   
 // Add new user
