@@ -5,7 +5,7 @@ Source : Polygon.io
 
 */
 
- function getInputValue(){
+function getInputValue() {
   // Selecting the input element and get its value 
   const quote =   document.getElementById('quote').value.toUpperCase();
   const base =   document.getElementById('base').value.toUpperCase();
@@ -26,78 +26,71 @@ Source : Polygon.io
     console.log(data);
     console.log(data.results);
   
-  //Insert FX ticker by in the form of getElementby ID
+    //Insert FX ticker by in the form of getElementby ID
+    document.getElementById('symbol').innerHTML = data.ticker;
 
-   document.getElementById('symbol').innerHTML = data.ticker;
-
-
-   //Declare Base and Quote Currency
-   //let Quote = (data.ticker[5]+data.ticker[6]+data.ticker[7]);
-   //let Base = data.ticker[2]+data.ticker[3]+data.ticker[4];
-   let Quote = quote;
-   let Base = base;
+    //Declare Base and Quote Currency
+    //let Quote = (data.ticker[5]+data.ticker[6]+data.ticker[7]);
+    //let Base = data.ticker[2]+data.ticker[3]+data.ticker[4];
+    let Quote = quote;
+    let Base = base;
    
-   
- //Create a table to store and display the given stock prices
-  
-   let pricedata = data.results;
+    //Create a table to store and display the given stock prices
+    let pricedata = data.results;
 
- 
- //for Date function
-   var options = {
-    weekday: "short",
-    year: "numeric",
-    month: "2-digit",
-    day: "numeric"
-   };
+    //for Date function
+    var options = {
+      weekday: "short",
+      year: "numeric",
+      month: "2-digit",
+      day: "numeric"
+    };
 
-   //Loop through the data using foreach and put all the results into a table
-   var text =`<br><table>
-          <thead>
-            <tr>
-              <th>Date </th>
-              <th>Exchange Rate<br>(${Quote}:${Base})</th>
-              <th>From </th>
-              <th>To </th>
-            </tr>
-        </thead>
+    //Loop through the data using foreach and put all the results into a table
+    var text =`<br><table>
+            <thead>
+              <tr>
+                <th>Date </th>
+                <th>Exchange Rate<br>(${Quote}:${Base})</th>
+                <th>From </th>
+                <th>To </th>
+              </tr>
+          </thead>
 
-    <tbody>`;
-    pricedata.forEach((price) => {
-      text = text + 
-      `<tr> 
-        <td>${new Date(price.t).toLocaleString("en-SG", options)}</td> 
-        <td>1 : ${price.c.toFixed(5)} </td> 
-        <td>${Quote  +" "+ (value)}</td> 
-        <td>${Base +" "+ (value/price.c).toFixed(2)} </td> 
-      </tr>`
-    });
-    text += `</tbody></table><br>`
+      <tbody>`;
+      pricedata.forEach((price) => {
+        text = text + 
+        `<tr> 
+          <td>${new Date(price.t).toLocaleString("en-SG", options)}</td> 
+          <td>1 : ${price.c.toFixed(5)} </td> 
+          <td>${Quote  +" "+ (value)}</td> 
+          <td>${Base +" "+ (value/price.c).toFixed(2)} </td> 
+        </tr>`
+      });
+      text += `</tbody></table><br>`
     
+      $("#mypanel").html(text);
 
     //Compute the conversion value
     let Conversion_value = value/pricedata[0].c;
     console.log(Conversion_value);
 
-    // JS Object:
-    // 1) Tran date 2) Value (Base currency) 3) Conversion_value
-
-// Set up JS Object
- // Check Base and Quote currency string and add negative for base currency   
-var sgd = 0;
-var usd = 0;
-var eur = 0;
-var gbp = 0;
- 
- if (Quote === 'SGD') {
-    sgd = value * -1
-    } else if (Quote === 'USD'){
-      usd = value * -1
-    } else if  (Quote === 'EUR') {
-      eur = value * -1
-    } else if  (Quote === 'GBP') {
-      gbp = value * -1
-    }; 
+    // Set up JS Object
+    // Check Base and Quote currency string and add negative for base currency   
+    var sgd = 0;
+    var usd = 0;
+    var eur = 0;
+    var gbp = 0;
+  
+    if (Quote === 'SGD') {
+        sgd = value * -1
+        } else if (Quote === 'USD') {
+          usd = value * -1
+        } else if  (Quote === 'EUR') {
+          eur = value * -1
+        } else if  (Quote === 'GBP') {
+          gbp = value * -1
+        }; 
 
     if (Base === 'SGD') {
       sgd = Conversion_value 
@@ -109,35 +102,39 @@ var gbp = 0;
         gbp = Conversion_value 
       }; 
 
-  var postData ={ 
-      user_id: 2, //to modify to be dynamic var
-      tran_type: 'Conversion',  
-      tran_date: datefrom,
-      amt_sgd: sgd,
-      amt_usd: usd,
-      amt_eur: eur,
-      amt_gbp: gbp
-  };
+      $.getJSON("http://localhost:3000/admin", function (response) {
+          var email = response.e_mail;
+          var u_id = response.user_id; // retrieve logged session's user_id
+                
+          var postData = { 
+            user_id: u_id, //to modify to be dynamic var
+            tran_type: 'Conversion',  
+            tran_date: datefrom,
+            amt_sgd: sgd,
+            amt_usd: usd,
+            amt_eur: eur,
+            amt_gbp: gbp
+          };
 
-  postDataJSON = JSON.stringify(postData); // convert JS object to JSON object
-  console.log(postDataJSON); // JSON Object to be used for back-end
-  
-
-    $("#mypanel").html(text);
-  
-    });
- }
-
+          postDataJSON = JSON.stringify(postData); // convert JS object to JSON object
+          console.log(postDataJSON); // JSON Object to be used for back-end   
+        });
+    }
+)};
  
-function refresh () {
+function refresh() {
   location.reload();
- }
+}
+
+function goBack() {
+  window.history.back();
+}
 
 function confirm() {
   addtran(postDataJSON);
-  updatebalance(postDataJSON)
-  console.log("confirm function ran");
-  alert("Balance Updated")
+  updatebalance(postDataJSON);
+  console.log("Confirmed transaction & update balance successful!");
+  alert("Balance Updated");
   window.location.reload();
 }
 
@@ -190,8 +187,8 @@ function updatebalance(postdata){// pass your data in method
 
           error: function (jqXHR, status) {
               // error handler
-              console.log(jqXHR);
-              alert('fail ' + status.code);   
+              // console.log(jqXHR);
+              // alert('fail ' + status.code);   
           }
        });
       }
