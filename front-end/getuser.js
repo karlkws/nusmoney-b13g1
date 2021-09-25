@@ -3,29 +3,67 @@
 //const b3 = document.getElementById('b3');
 //console.log(b3)
 
-uid = "bdunmore1@europa.eu"
-console.log(uid)
-
-function getFromServer(){
+function getEmail(){
   //e.preventDefault();       //?
-  var querryStr =  "http://localhost:3000/user/by-email?email=" + uid;
+  var querryStr = "http://localhost:3000/admin";
   console.log(querryStr);
-  $.getJSON(querryStr, mydata );
-  }
+  $.getJSON(querryStr, function (response) {
+      var email = response.e_mail;
+      console.log(email);
+
+      uid = email;
+      console.log(uid)
+      
+      
+        //e.preventDefault();       //?
+        var querryStr =  "http://localhost:3000/user/by-email?email=" + uid;
+        console.log(querryStr);
+        $.getJSON(querryStr, mydata );
+        
+
+  
+
+  })
+}
+
 
 
     function mydata(data){
-      var text ="<ul>";
-      data.forEach(function(item){    
-      text = text + uid + `<li> Account:<br><br>  SGD Balance: ${item.balance_sgd}<br> USD Balance: ${item.balance_usd}<br> EUR Balance:: ${item.balance_eur}<br>  
-      GBP Balance: ${item.balance_gbp} </li>`
+      // var text ="<ul>";
+      // data.forEach(function(item){    
+      // text = text + uid + `<li> Balance:<br><br> SGD : ${item.balance_sgd} | USD : ${item.balance_usd}  |    EUR : ${item.balance_eur} |    GBP : ${item.balance_gbp} </li><br>`
     
-      });
-      text += "</ul>"
+      // });
+      // text += "</ul>"
+      var text=`<strong>Balance</strong> :<br><br><table>
+      <thead><tr>
+          <th>Account Holder</th>
+          <th>SGD </th>
+          <th>USD</th>
+          <th>EUR </th>
+          <th>GBP</th>
+        </tr>
+    </thead>
+
+<tbody>`;
+data.forEach(function(item){ 
+  text = text  + 
+  `<tr> 
+    <td>${uid}</td> 
+    <td>${item.balance_sgd}</td> 
+    <td>${item.balance_usd} </td> 
+    <td>${item.balance_eur}</td> 
+    <td>${item.balance_gbp} </td> 
+  </tr>`
+});
+text += `</tbody></table><br><br>`
+
+
       $(".balance").html(text);   
   }
 
-getFromServer();
+//getFromServer();
+getEmail();
 //b3.addEventListener('click',getFromServer);
 
 
