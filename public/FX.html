@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>      <!-- jquery source -->
+    <link rel="stylesheet" href="FX.css" />
+    
+    <title>Currency</title>
+    <h1>NUS Money - Currency Conversion </h1>
+</head>
+<body>
+
+    <div class = 'balance'></div>
+<div>
+    
+    <form id="myform">
+        
+        <label for="ticker"><strong>From</strong>:</label>
+        <input type="text" id="quote" name="ticker" placeholder="SGD/EUR/USD/GBP">
+        
+        <label for="ticker"><strong> &rarr; To:</strong></label>
+        <input type="text" id="base" name="ticker" placeholder="eg.SGD/EUR/USD/GBP"><br><br>
+
+        <label for="Value"><strong>Amount</strong> </label><br>
+        <input type="int" id="Value" name="Amount" placeholder="Amount"><br><br>
+
+        <label for="Date"><strong>Transaction Date:</strong></label><br>
+        <input type="text" id="transaction" name="Transaction Date" placeholder="YYYY-MM-DD"><br><br>
+
+     
+
+      </form>
+      <br><button class="btn btn-outline-primary" onclick="getInputValue();">Get FX Quote</button>
+      <button class = "btn btn-dark" onclick="refresh()">Refresh</button>
+      
+      <h1 id="symbol"></h1>
+</div>
+</div>
+
+<div id="mypanel">
+    
+    <br>
+    <br>
+    
+</div>
+
+ <button class = "btn btn-dark" id='b1' onclick="confirm()">Confirm Transaction</button>
+
+
+</body>
+<script src="FX.js"></script>
+<script src="getuser.js"></script>
+<footer>
+    <br>
+    <button class ="btn btn-dark" id='back-btn' onclick="goBack()">Back to Dashboard</button>
+</footer>
+</html>
