@@ -3,14 +3,24 @@
      font-family: arial, sans-serif;
      border-collapse: collapse;
      width: 50%;
+     display: contents;
+    justify-content: space-between;
+    position: relative;
    }
    
-   td, th {
+   th {
      border: 1px solid #18191A;
-     background-color : #FFFEF7;
-     text-align: left;
-     padding: 8px;
+     background-color : #91F5AD;
+     text-align: center;
+     padding: 10px;
    }
+
+   td {
+    border: 1px solid #1a1a18;
+    background-color : #FFFEF7;
+    text-align: left;
+    padding: 10px;
+  }
 
    #base , #quote {
     text-transform: uppercase;
@@ -29,3 +39,46 @@
   margin-right: auto ;
   background-color: beige;
   } 
+
+  ol { 
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .list {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 40px;
+  }
+
+  .list li {
+    background-color: #fff;
+    box-shadow: var(--box-shadow);
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 10px;
+    margin: 5px 0;
+  }
+
+  .list li.GBP {
+    border-right: 5px solid #2ecc71;
+  }
+  
+  .list li.EUR {
+    border-right: 5px solid #c0392b;
+  }
+
+  .list li.USD {
+    border-right: 5px solid blue;
+  }
+
+  .list li.SGD {
+    border-right: 5px solid yellow;
+  }
+
+  .link{
+    border: 1px solid #745296;
+  }
+

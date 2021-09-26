@@ -7,23 +7,26 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>      <!-- jquery source -->
     <link rel="stylesheet" href="FX.css" />
+    
 </head>
 <body>
     <h1>NUS Money</h1>
+    <a href="deposit.html">Deposit</a>  |   <a href="withdrawal.html">Withdrawal</a>   |   <a href="FX.html">Conversion</a> 
     <h2>Dashboard</h2>
-    
-    Welcome,
-    <p id="user"> </p>  
+    <p class = 'link'></p><br>
 
+    
+    <strong>Welcome,</strong>
+    <p id="user"> </p>  
+  
     <div class = 'balance'></div>
 
-    <div class = 'txn-history'>test</div> 
+    <!-- <div class = 'txn-history'>test</div>  -->
     
+    <h3>Recent transaction History</h3>
+      <ol id="list" class="list"></ol>
 
-     <div class = 'link'>
-         <p id='link-header'><h3>Navigation</h3></p>
-        <a href="deposit.html">Deposit</a>  |   <a href="withdrawal.html">Withdrawal</a>   |   <a href="FX.html">Conversion</a> 
-     </div>
+     
     
      <br><br><br>
      <div class='logout'>
