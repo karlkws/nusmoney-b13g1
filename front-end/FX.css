@@ -22,6 +22,10 @@
    }
   
 
-   /* body {
-    background-color : #C6DEFF;
-  } */
+   body {
+    
+  width: 700px ;
+  margin-left: auto ;
+  margin-right: auto ;
+  background-color: beige;
+  } 

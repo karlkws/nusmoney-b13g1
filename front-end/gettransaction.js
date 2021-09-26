@@ -4,12 +4,12 @@ function getEmail() {
   console.log(querryStr);
   $.getJSON(querryStr, function (response) {
       var email = response.e_mail;
-      //console.log(email);
-      uid = email;
-      //console.log(uid)
+      var u_id = response.user_id;
+      console.log(email);
+      console.log(u_id);
       
       //e.preventDefault();     //?
-      var querryStr =  "http://localhost:3000/user/by-email?email=" + uid;
+      var querryStr =  "http://localhost:3000/transaction/by-email?email=" + email;
       console.log(querryStr);
       $.getJSON(querryStr, mydata );
     
@@ -19,7 +19,8 @@ function getEmail() {
       `<strong>Your account info:</strong>:<br><br><table>
         <thead><tr>
             
-            <th>Account Holder</th>
+            <th>Date</th>
+            <th>Transaction Type</th>
             <th>SGD </th>
             <th>USD </th>
             <th>EUR </th>
@@ -31,17 +32,18 @@ function getEmail() {
       text = text + 
       `<tr> 
         
-        <td>${item.first_name} ${item.last_name}</td> 
-        <td>${item.balance_sgd.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} </td> 
-        <td>${item.balance_usd.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} </td> 
-        <td>${item.balance_eur.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} </td> 
-        <td>${item.balance_gbp.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} </td> 
+        <td>${tran_date}</td> 
+        <td>${tran_type}</td> 
+        <td>${amt_sgd.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} </td> 
+        <td>${amt_usd.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} </td> 
+        <td>${amt_eur} </td> 
+        <td>${amt_gbp} </td> 
       </tr>`
       });
       text += `</tbody></table><br><br>`
 
 
-      $(".balance").html(text);   
+      $(".Transaction").html(text);   
     };
   });
 };
