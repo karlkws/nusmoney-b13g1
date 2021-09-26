@@ -21,4 +21,8 @@ function getUserName() {
   };
 
 
+function logOut() {
+  window.location.href = "http://localhost:3000/logout"
+};
+
 getUserName();

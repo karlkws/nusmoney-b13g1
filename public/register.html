@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>NUS Money</title>
+	<link rel="stylesheet" href="FX.css" />
+  </head>
+  <body>
+    <h1>NUS Money</h1>
+    <h2>Registration</h2>
+
+    <!-- user(first_name, last_name, email, mobile, password, date_created) -->
+	<form action="/user/add-user" method="post">
+  	<!-- user input-->
+  	First name:<br>
+    <input type="text" name="first_name" placeholder="" required><br><br>
+    Last name: <br>
+    <input type="text" name="last_name" placeholder="" required><br><br>
+    Email:<br>
+  	<input type="text" name="email" placeholder="" required><br><br>
+    Mobile no.: <br>
+    <input type="text" name="mobile" placeholder="" required><br><br>
+  	Password:<br>
+  	<input type="password" name="password" placeholder="" required><br><br>
+    <!-- Confirm password: 
+    <input type="password" name="cfm-password" placeholder="" required><br><br> -->
+      	<!-- submit button -->
+  	<input type="submit" value="Sign up">
+	</form>
+  </body>
+</html>

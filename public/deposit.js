@@ -45,7 +45,7 @@ function confirm() {
   };
 
 function goBack() {
-    window.history.back();
+    window.location.href = '/public/home.html';
 }
   
     

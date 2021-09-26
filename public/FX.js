@@ -127,7 +127,7 @@ function refresh() {
 }
 
 function goBack() {
-  window.history.back();
+  window.location.href = '/public/home.html';
 }
 
 function confirm() {
