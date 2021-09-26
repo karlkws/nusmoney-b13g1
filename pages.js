@@ -13,14 +13,14 @@ app.use(session({
 	resave: true,
 	saveUninitialized: true
 }));
-app.use('/front-end', express.static(path.join(__dirname, 'front-end')))
+app.use('/public', express.static(path.join(__dirname, 'public')))
 // Create router object
 router = express.Router();
 
 
 // 1. Log In page
 router.get('/', function(request, response) {
-	response.sendFile(path.join(__dirname + '/front-end/login.html'));
+	response.sendFile(path.join(__dirname + '/public/login.html'));
 });
 
 // 2. After Log in => Landing Page
@@ -36,18 +36,17 @@ router.post('/auth', function(request, response) {
                 // console.log(results[0].user_id);
                 request.session.u_id = results[0].user_id;
                 console.log('User log in success!');
-                // response.redirect('/front-end/FX.html'); // actual page to redirect to, TO BE EDITED AND FINALIZED
-                response.redirect('/front-end/hometesting.html'); // for testing purpose
+                response.redirect('/public/home.html'); 
 			} else {
 				console.log('Incorrect Email and/or Password!');
                 
-                response.redirect('/front-end/relogin.html');;
+                response.redirect('/public/relogin.html');;
 			}			
 			response.end();
 		});
 	} else {
         console.log("Please enter Email and Password!");
-        response.redirect('/front-end/relogin.html');
+        response.redirect('/public/relogin.html');
         response.end();
     }
     
@@ -64,15 +63,6 @@ router.get('/admin', (request, response) => {
         response.send("Error retrieving user session's email.");
     }
 });
-
-
-// 3. Landing Page => Deposit Page
-
-
-// 4. Landing Page => Transfer Page
-
-
-// 5. Landing Page => FX Page
 
 
 

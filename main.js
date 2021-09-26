@@ -21,7 +21,7 @@ server.use(session({
 	saveUninitialized: true
 }));
 
-server.use('/front-end', express.static(path.join(__dirname, 'front-end')))
+server.use('/public', express.static(path.join(__dirname, 'public')))
 server.use(user.router);
 server.use(transaction.router);
 server.use(pages.router);

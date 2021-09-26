@@ -10,8 +10,6 @@ router = express.Router();
 
 
 
-
-
 // Find user by email
 router.get("/user/by-email", (request, response) => {
     database.connection.query(

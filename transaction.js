@@ -8,7 +8,7 @@ router = express.Router();
 
 
 // 3. GET TRANSACTION HISTORY API
-router.get("/transaction/by-email", (request, response) => {
+router.get("/transaction/by-user_id", (request, response) => {
       
     database.connection.query(
       `select 
@@ -19,7 +19,7 @@ router.get("/transaction/by-email", (request, response) => {
         amt_eur,
         amt_gbp
       from transaction 
-      where email = '${request.query.email}'`,
+      where user_id = '${request.query.user_id}'`,
       (errors, records) => {
         if (errors) {
           console.log(errors);
