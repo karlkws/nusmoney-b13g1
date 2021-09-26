@@ -37,10 +37,11 @@ router.post("/user/add-user", (request, response) => {
         (errors, records) => {
             if (errors) {
                 console.log(errors);
-                response.status(500).send("Some error occurred at the backend");
+                response.status(500).send("User registration failed, some error occurred at the backend. Please check your input fields in the sign up form.");
             } 
             else {
-                response.status(200).send("Created new user!");
+                console.log("Created new user!");
+                response.redirect('/public/register_success.html');
             }
         }
     );

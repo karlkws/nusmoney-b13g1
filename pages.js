@@ -20,7 +20,7 @@ router = express.Router();
 
 // 1. Log In page
 router.get('/', function(request, response) {
-	response.sendFile(path.join(__dirname + '/public/login.html'));
+	response.redirect('/public/login.html');
 });
 
 // 2. After Log in => Landing Page
@@ -64,6 +64,23 @@ router.get('/admin', (request, response) => {
     }
 });
 
+// 4. Route to Register page
+router.get('/register', function(request, response) {
+	response.redirect('/public/register.html');
+});
+
+
+// 5. Log out
+router.get('/logout', function(request, response, next) {
+	// remove the req.user property and clear the login session
+	//request.logout();
+
+	// destroy session data
+	request.session = null;
+    //console.log(request.session);
+	// redirect to login page
+	response.redirect('/public/login.html');
+});
 
 
 module.exports = {
