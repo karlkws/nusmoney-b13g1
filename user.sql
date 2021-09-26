@@ -11,10 +11,10 @@ CREATE TABLE user (
 	password VARCHAR(50),
 	date_created DATE,
 	last_tran_date DATE,
-	balance_sgd DECIMAL(10,2),
-	balance_usd DECIMAL(10,2),
-	balance_eur DECIMAL(10,2),
-	balance_gbp DECIMAL(10,2),
+	balance_sgd DECIMAL(10,2) NOT NULL DEFAULT 0,
+	balance_usd DECIMAL(10,2) NOT NULL DEFAULT 0,
+	balance_eur DECIMAL(10,2) NOT NULL DEFAULT 0,
+	balance_gbp DECIMAL(10,2) NOT NULL DEFAULT 0,
 	PRIMARY KEY (user_id)
 );
 

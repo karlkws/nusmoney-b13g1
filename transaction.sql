@@ -8,10 +8,10 @@ CREATE TABLE transaction (
 	user_id INT NOT NULL,
 	tran_date DATE,
 	tran_type VARCHAR(10),
-	amt_sgd DECIMAL(10,2),
-	amt_usd DECIMAL(10,2),
-	amt_eur DECIMAL(10,2),
-	amt_gbp DECIMAL(10,2),
+	amt_sgd DECIMAL(10,2) NOT NULL DEFAULT 0,
+	amt_usd DECIMAL(10,2) NOT NULL DEFAULT 0,
+	amt_eur DECIMAL(10,2) NOT NULL DEFAULT 0,
+	amt_gbp DECIMAL(10,2) NOT NULL DEFAULT 0,
 	PRIMARY KEY (tran_id)
 );
 insert into transaction (tran_id, user_id, tran_date, tran_type, amt_sgd, amt_usd, amt_eur, amt_gbp) values (1, 1, '2021-07-07 08:02:49', 'Deposit', 9072.66, 3763.17, 2265.45, 6038.42);
