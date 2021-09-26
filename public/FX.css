@@ -82,3 +82,24 @@
     border: 1px solid #745296;
   }
 
+  button {
+
+    margin: 15px auto 0;
+    padding: 3px 20px;
+
+   
+    font-size: 14px;
+    text-align: center;
+    border : 1px solid #2C3539;
+    text-transform: uppercase;
+    /* text-decoration: none; */
+    /* outline: none; */
+}
+
+button:hover {
+    transition: 0.5s;
+    background-color: #2E1263;
+    color: #00FFFF;
+    text-decoration: underline;
+    letter-spacing: 0.5px;
+}
