@@ -10,7 +10,7 @@
    
    th {
      border: 1px solid #18191A;
-     background-color : #91F5AD;
+     background-color : #a0d2eb;
      text-align: center;
      padding: 10px;
    }
@@ -37,7 +37,7 @@
   width: 700px ;
   margin-left: auto ;
   margin-right: auto ;
-  background-color: beige;
+  background-color: #e5eaf5;
   } 
 
   ol { 
@@ -98,8 +98,16 @@
 
 button:hover {
     transition: 0.5s;
-    background-color: #2E1263;
-    color: #00FFFF;
+    background-color: #8458B3;
+    color: #e5eaf5;
     text-decoration: underline;
     letter-spacing: 0.5px;
+}
+
+#logo {
+  display: inline-block;
+  margin: 15px; /* margin: 20px was off */
+  height: 150px;
+  width: auto; /* correct proportions to specified height */
+  border-radius: 50%; /* makes it a circle */
 }
