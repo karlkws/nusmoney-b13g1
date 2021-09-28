@@ -64,7 +64,7 @@ router.get("/transaction/by-user_id", (request, response) => {
     )
 });
 // UPDATE NEW TRANSACTION TO USER BALANCE IN DATABASE
-    router.put("/user/update", (request, response) => {
+    router.put("/user/updatebalance", (request, response) => {
         let user = request.body;
         database.connection.query(
         `UPDATE
@@ -83,7 +83,7 @@ router.get("/transaction/by-user_id", (request, response) => {
                 response.status(500).send("Some error occurred at the backend");
             } 
             else {
-                response.status(200).send("Created new user!");
+                response.status(200).send("User balance updated!");
             }
         }
     )

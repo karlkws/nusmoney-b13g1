@@ -172,7 +172,7 @@ function updatebalance(postdata){// pass your data in method
   // $.ajax({})
   $.ajax({
           type: "PUT",
-          url: "http://localhost:3000/user/update",
+          url: "http://localhost:3000/user/updatebalance",
           data: postDataJSON,// now data come in this function
           contentType: "application/json; charset=UTF-8", // standard
           crossDomain: true, // for security purpose
